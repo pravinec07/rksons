@@ -1,6 +1,7 @@
 // An All Components Screen is a great way to dev and quick-test components
 import React from 'react'
-import { View, ScrollView, Text, Image, NetInfo, TouchableOpacity } from 'react-native'
+import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native'
+// import NetInfo from '@react-native-community/netinfo'
 import DeviceInfo from 'react-native-device-info'
 import { Metrics, Images } from './DevTheme'
 import styles from './Styles/DeviceInfoScreenStyles'
@@ -41,52 +42,52 @@ export default class DeviceInfoScreen extends React.Component {
     }
   }
 
-  componentDidMount () {
-    NetInfo.isConnected.addEventListener('connectionChange', this.setConnected)
-    NetInfo.isConnected.fetch().done(this.setConnected)
-    NetInfo.addEventListener('connectionChange', this.setConnectionInfo)
-    NetInfo.getConnectionInfo().done(this.setConnectionInfo)
-    NetInfo.addEventListener('connectionChange', this.updateConnectionInfoHistory)
+  // componentDidMount () {
+  //   NetInfo.addEventListener('connectionChange', this.setConnected)
+  //   NetInfo.fetch().done(this.setConnected)
+  //   NetInfo.addEventListener('connectionChange', this.setConnectionInfo)
+  //   NetInfo.getConnectionInfo().done(this.setConnectionInfo)
+  //   NetInfo.addEventListener('connectionChange', this.updateConnectionInfoHistory)
 
-    // an example of how to display a custom Reactotron message
-    // console.tron.display({
-    //   name: 'SPECS',
-    //   value: {
-    //     hardware: fromPairs(map((o) => [o.title, o.info], HARDWARE_DATA)),
-    //     os: fromPairs(map((o) => [o.title, o.info], OS_DATA)),
-    //     app: fromPairs(map((o) => [o.title, o.info], APP_DATA))
-    //   },
-    //   preview: 'About this device...'
-    // })
-  }
+  //   // an example of how to display a custom Reactotron message
+  //   // console.tron.display({
+  //   //   name: 'SPECS',
+  //   //   value: {
+  //   //     hardware: fromPairs(map((o) => [o.title, o.info], HARDWARE_DATA)),
+  //   //     os: fromPairs(map((o) => [o.title, o.info], OS_DATA)),
+  //   //     app: fromPairs(map((o) => [o.title, o.info], APP_DATA))
+  //   //   },
+  //   //   preview: 'About this device...'
+  //   // })
+  // }
 
-  componentWillUnmount () {
-    NetInfo.isConnected.removeEventListener('connectionChange', this.setConnected)
-    NetInfo.removeEventListener('connectionChange', this.setConnectionInfo)
-    NetInfo.removeEventListener('connectionChange', this.updateConnectionInfoHistory)
-  }
+  // componentWillUnmount () {
+  //   NetInfo.isConnected.removeEventListener('connectionChange', this.setConnected)
+  //   NetInfo.removeEventListener('connectionChange', this.setConnectionInfo)
+  //   NetInfo.removeEventListener('connectionChange', this.updateConnectionInfoHistory)
+  // }
 
-  setConnected = (isConnected) => {
-    this.setState({isConnected})
-  }
+  // setConnected = (isConnected) => {
+  //   this.setState({isConnected})
+  // }
 
-  setConnectionInfo = (connectionInfo) => {
-    this.setState({connectionInfo})
-  }
+  // setConnectionInfo = (connectionInfo) => {
+  //   this.setState({connectionInfo})
+  // }
 
-  updateConnectionInfoHistory = (connectionInfo) => {
-    const connectionInfoHistory = this.state.connectionInfoHistory.slice()
-    connectionInfoHistory.push(connectionInfo)
-    this.setState({connectionInfoHistory})
-  }
+  // updateConnectionInfoHistory = (connectionInfo) => {
+  //   const connectionInfoHistory = this.state.connectionInfoHistory.slice()
+  //   connectionInfoHistory.push(connectionInfo)
+  //   this.setState({connectionInfoHistory})
+  // }
 
-  netInfo () {
-    return ([
-      {title: 'Connection', info: (this.state.isConnected ? 'Online' : 'Offline')},
-      {title: 'Connection Info', info: JSON.stringify(this.state.connectionInfo)},
-      {title: 'Connection Info History', info: JSON.stringify(this.state.connectionInfoHistory)}
-    ])
-  }
+  // netInfo () {
+  //   return ([
+  //     {title: 'Connection', info: (this.state.isConnected ? 'Online' : 'Offline')},
+  //     {title: 'Connection Info', info: JSON.stringify(this.state.connectionInfo)},
+  //     {title: 'Connection Info History', info: JSON.stringify(this.state.connectionInfoHistory)}
+  //   ])
+  // }
 
   renderCard (cardTitle, rowData) {
     return (
@@ -143,7 +144,7 @@ export default class DeviceInfoScreen extends React.Component {
               {this.renderCard('Device Hardware', HARDWARE_DATA)}
               {this.renderCard('Device OS', OS_DATA)}
               {this.renderCard('App Info', APP_DATA)}
-              {this.renderCard('Net Info', this.netInfo())}
+              {/* {this.renderCard('Net Info', this.netInfo())} */}
             </View>
           </View>
         </ScrollView>
